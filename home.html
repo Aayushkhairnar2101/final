@@ -1,0 +1,599 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DriveEasy Rentals — Book your ride in minutes</title>
+    <meta name="description" content="DriveEasy car rentals: fast booking, transparent pricing, optional insurance, weekend deals." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --bg: #0b1020;
+            --bg-soft: #101733;
+            --card: #121a3d;
+            --text: #e8ecff;
+            --text-dim: #b9c0e0;
+            --brand: #6ee7ff;
+            /* solo/primary accent */
+            --brand-2: #9b8cff;
+            /* secondary accent */
+            --ok: #79f2c0;
+            --warn: #ffd166;
+            --danger: #ff8fa3;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+            --radius: 18px;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            height: 100%;
+        }
+        
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--text);
+            background: radial-gradient(1200px 600px at 90% -10%, rgba(110, 231, 255, .15), rgba(0, 0, 0, 0)), radial-gradient(900px 600px at -10% 20%, rgba(155, 140, 255, .18), rgba(0, 0, 0, 0)), var(--bg);
+            line-height: 1.5;
+        }
+        
+        a {
+            color: var(--brand);
+            text-decoration: none;
+        }
+        
+        .container {
+            width: min(1200px, 92%);
+            margin: 0 auto;
+        }
+        /* Header */
+        
+        header {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            background: linear-gradient(180deg, rgba(11, 16, 32, .85), rgba(11, 16, 32, .55));
+            z-index: 10;
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: .4px;
+        }
+        
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            box-shadow: var(--shadow);
+            display: grid;
+            place-items: center;
+        }
+        
+        .logo-mark svg {
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .4));
+        }
+        
+        .nav a.btn {
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: #0b0f1f;
+            font-weight: 700;
+            box-shadow: var(--shadow);
+        }
+        
+        .nav .links {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+        /* Hero */
+        
+        .hero {
+            padding: 72px 0 48px;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 28px;
+            align-items: center;
+        }
+        
+        .title {
+            font-size: clamp(32px, 5vw, 56px);
+            line-height: 1.05;
+            font-weight: 800;
+            margin: 0 0 14px;
+        }
+        
+        .subtitle {
+            color: var(--text-dim);
+            font-size: clamp(15px, 1.6vw, 18px);
+            margin-bottom: 24px;
+        }
+        
+        .hero .cta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 18px;
+            border-radius: 14px;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, .08);
+            background: #15204e;
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+        
+        .btn.primary {
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            color: #0b0f1f;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, .35);
+        }
+        
+        .hero-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 14px;
+        }
+        
+        .stat {
+            background: #0e1636;
+            border: 1px solid rgba(255, 255, 255, .08);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat b {
+            display: block;
+            font-size: 20px;
+        }
+        /* Cars */
+        
+        .section {
+            padding: 42px 0;
+        }
+        
+        .section h2 {
+            font-size: clamp(24px, 3.4vw, 36px);
+            margin: 0 0 16px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat( auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, .02));
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            color: var(--text-dim);
+        }
+        
+        .price {
+            font-size: 22px;
+            font-weight: 800;
+        }
+        
+        .card .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .thumb {
+            height: 120px;
+            border-radius: 12px;
+            background: radial-gradient(150px 60px at 30% 10%, rgba(110, 231, 255, .18), rgba(0, 0, 0, 0)), #0f183d;
+            display: grid;
+            place-items: center;
+        }
+        /* Booking */
+        
+        form {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .field {
+            display: grid;
+            gap: 6px;
+        }
+        
+        .input,
+        select {
+            background: #0f1738;
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 12px;
+            padding: 12px 14px;
+            color: var(--text);
+            outline: none;
+        }
+        
+        .note {
+            color: var(--text-dim);
+            font-size: 13px;
+        }
+        /* Footer */
+        
+        footer {
+            padding: 48px 0 60px;
+            color: var(--text-dim);
+        }
+        
+        .foot {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px dashed rgba(255, 255, 255, .12);
+            padding-top: 20px;
+        }
+        /* Animations */
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        .float {
+            animation: float 4s ease-in-out infinite;
+        }
+        /* Dark toggle */
+        
+        .toggle {
+            width: 56px;
+            height: 32px;
+            background: #0f1738;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 999px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .dot {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--brand), var(--brand-2));
+            transition: left .22s ease;
+        }
+        
+        .toggle.active .dot {
+            left: 27px;
+        }
+        /* Responsive */
+        
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">
+                <div class="logo-mark" aria-hidden="true">
+                    <!-- Simple car mark -->
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 13l2-5a4 4 0 013.7-2.6h6.6A4 4 0 0119 8l2 5" stroke="#0b0f1f" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="7.5" cy="16.5" r="2.2" fill="#0b0f1f"/>
+          <circle cx="16.5" cy="16.5" r="2.2" fill="#0b0f1f"/>
+        </svg>
+                </div>
+                <span>DriveEasy</span>
+            </div>
+            <div class="links">
+                <a href="#cars">Cars</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#book" class="btn">Book Now</a>
+                <div id="themeToggle" class="toggle" title="Toggle glow mode" role="button" aria-pressed="false"><span class="dot"></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero" id="home">
+            <div>
+                <h1 class="title">Rent your ride in <span style="background: linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip:text; background-clip:text; color: transparent;">minutes</span>.</h1>
+                <p class="subtitle">Transparent pricing, optional insurance, weekend deals and instant confirmation. No surprises—only smooth drives.</p>
+                <div class="cta">
+                    <a class="btn primary" href="#book">Book a car</a>
+                    <a class="btn" href="#cars">See available cars</a>
+                </div>
+                <div class="stats">
+                    <div class="stat"><b>1200+</b><span class="note">Bookings this month</span></div>
+                    <div class="stat"><b>4.9★</b><span class="note">Customer rating</span></div>
+                    <div class="stat"><b>24/7</b><span class="note">Roadside support</span></div>
+                </div>
+            </div>
+            <div class="hero-card float">
+                <div class="thumb" aria-hidden="true">
+                    <svg width="220" height="80" viewBox="0 0 220 80" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="var(--brand)"/>
+              <stop offset="100%" stop-color="var(--brand-2)"/>
+            </linearGradient>
+          </defs>
+          <rect x="10" y="30" width="200" height="28" rx="14" fill="url(#g1)" opacity="0.85"/>
+          <circle cx="60" cy="65" r="12" fill="#0b0f1f"/>
+          <circle cx="160" cy="65" r="12" fill="#0b0f1f"/>
+        </svg>
+                </div>
+                <div style="display:grid; gap:10px;">
+                    <div class="row">
+                        <span class="tag">✔ Free cancellation (24h)</span>
+                        <span class="tag">🛡 Optional Insurance</span>
+                    </div>
+                    <div class="row">
+                        <span class="tag">⚡ Instant confirmation</span>
+                        <span class="tag">💳 Pay at pickup</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="cars">
+            <h2>Popular cars</h2>
+            <div class="grid">
+                <article class="card">
+                    <div class="thumb" aria-hidden="true">🚗</div>
+                    <h3>Maruti Swift</h3>
+                    <p class="note">City-friendly hatchback, great mileage.</p>
+                    <div class="row"><span class="price">₹1200<span class="note">/day</span></span><span class="tag">Manual</span></div>
+                    <button class="btn primary" onclick="quickFill('MH01-AB-1234','Maruti Swift',1200)">Select</button>
+                </article>
+                <article class="card">
+                    <div class="thumb" aria-hidden="true">🚙</div>
+                    <h3>Tata Nexon</h3>
+                    <p class="note">Comfortable compact SUV, spacious cabin.</p>
+                    <div class="row"><span class="price">₹1800<span class="note">/day</span></span><span class="tag">Automatic</span></div>
+                    <button class="btn primary" onclick="quickFill('MH03-EF-9012','Tata Nexon',1800)">Select</button>
+                </article>
+                <article class="card">
+                    <div class="thumb" aria-hidden="true">🚐</div>
+                    <h3>Toyota Innova</h3>
+                    <p class="note">Perfect for family trips and groups.</p>
+                    <div class="row"><span class="price">₹3000<span class="note">/day</span></span><span class="tag">Automatic</span></div>
+                    <button class="btn primary" onclick="quickFill('MH04-GH-3456','Toyota Innova',3000)">Select</button>
+                </article>
+                <article class="card">
+                    <div class="thumb" aria-hidden="true">🚘</div>
+                    <h3>Honda City</h3>
+                    <p class="note">Premium sedan with plush ride.</p>
+                    <div class="row"><span class="price">₹2200<span class="note">/day</span></span><span class="tag">Manual</span></div>
+                    <button class="btn primary" onclick="quickFill('MH05-IJ-7890','Honda City',2200)">Select</button>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="pricing">
+            <h2>Simple, transparent pricing</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>What you pay</h3>
+                    <ul class="note" style="margin:0; padding-left:18px; display:grid; gap:6px;">
+                        <li>Base daily rate × number of days</li>
+                        <li>Optional insurance: ₹150/day</li>
+                        <li>GST: 18%</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Smart adjustments</h3>
+                    <ul class="note" style="margin:0; padding-left:18px; display:grid; gap:6px;">
+                        <li>Weekly discount: 10% (7+ days)</li>
+                        <li>Weekend surcharge: ₹500/day (Sat/Sun)</li>
+                        <li>Late return fee: 25% of daily rate per extra day</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="book">
+            <h2>Book your car</h2>
+            <div class="grid">
+                <div class="card">
+                    <form id="bookingForm" onsubmit="handleSubmit(event)">
+                        <div class="field">
+                            <label for="name">Full name</label>
+                            <input id="name" class="input" placeholder="e.g., Atharv Khairnar" required />
+                        </div>
+                        <div class="field">
+                            <label for="plate">License plate</label>
+                            <input id="plate" class="input" placeholder="e.g., MH01-AB-1234" required />
+                        </div>
+                        <div class="field">
+                            <label for="car">Car</label>
+                            <input id="car" class="input" placeholder="e.g., Maruti Swift" required />
+                        </div>
+                        <div class="field">
+                            <label for="days">Days</label>
+                            <input id="days" class="input" type="number" min="1" value="3" required />
+                        </div>
+                        <div class="field">
+                            <label for="insurance">Insurance</label>
+                            <select id="insurance">
+              <option value="no">No</option>
+              <option value="yes">Yes (+₹150/day)</option>
+            </select>
+                        </div>
+                        <button class="btn primary" type="submit">Get instant quote</button>
+                        <p class="note">This demo calculates an estimated total like the Java console app.</p>
+                    </form>
+                </div>
+                <div class="card" id="quoteCard" aria-live="polite">
+                    <h3>Your quote</h3>
+                    <div id="quoteBody" class="note">Fill the form to see your estimate.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container foot">
+            <p>© <span id="year"></span> DriveEasy Rentals. All rights reserved.</p>
+            <p>Made with <span aria-label="sparkles" title="sparkles">✨</span> & CSS.</p>
+        </div>
+    </footer>
+
+    <script>
+        const GST = 0.18;
+        const INSURANCE_PER_DAY = 150;
+        const LATE_FEE_RATE = 0.25; // (not used in quote, shown as info)
+        const WEEKLY_DISCOUNT = 0.10;
+        const WEEKEND_SURCHARGE = 500;
+
+        const rates = {
+            "MH01-AB-1234": 1200,
+            "MH03-EF-9012": 1800,
+            "MH04-GH-3456": 3000,
+            "MH05-IJ-7890": 2200
+        };
+
+        function countWeekendDays(start, days) {
+            const s = new Date(start);
+            let count = 0;
+            for (let i = 0; i < days; i++) {
+                const d = new Date(s);
+                d.setDate(s.getDate() + i);
+                const dow = d.getDay();
+                if (dow === 0 || dow === 6) count++;
+            }
+            return count;
+        }
+
+        function quickFill(plate, carName, rate) {
+            document.getElementById('plate').value = plate;
+            document.getElementById('car').value = carName;
+            document.getElementById('days').focus();
+        }
+
+        function formatINR(n) {
+            return new Intl.NumberFormat('en-IN').format(Math.round(n));
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const plate = document.getElementById('plate').value.trim();
+            const car = document.getElementById('car').value.trim();
+            const days = Math.max(1, parseInt(document.getElementById('days').value || '1', 10));
+            const insurance = document.getElementById('insurance').value === 'yes';
+
+            const perDay = rates[plate] || 1400;
+            const today = new Date();
+            let base = perDay * days;
+
+            // weekly discount
+            if (days >= 7) base *= (1 - WEEKLY_DISCOUNT);
+
+            // weekend surcharge
+            const weekends = countWeekendDays(today, days);
+            base += WEEKEND_SURCHARGE * weekends;
+
+            const insuranceCost = insurance ? INSURANCE_PER_DAY * days : 0;
+            const subtotal = base + insuranceCost;
+            const tax = subtotal * GST;
+            const total = subtotal + tax;
+
+            const html = `
+      <div style="display:grid; gap:8px;">
+        <div class="tag">👤 ${name || 'Guest'}</div>
+        <div class="tag">🚘 ${car} <span class="note">(${plate})</span></div>
+        <div class="tag">📆 ${days} day(s)</div>
+        <hr style="border: none; border-top:1px dashed rgba(255,255,255,.15);">
+        <div class="row"><span>Rate / day</span><b>₹${formatINR(perDay)}</b></div>
+        <div class="row"><span>Base</span><b>₹${formatINR(base)}</b></div>
+        <div class="row"><span>Insurance</span><b>₹${formatINR(insuranceCost)}</b></div>
+        <div class="row"><span>GST (18%)</span><b>₹${formatINR(tax)}</b></div>
+        <div class="row" style="font-size:20px; font-weight:800;"><span>Total</span><span>₹${formatINR(total)}</span></div>
+        <p class="note">Includes weekend surcharge and 7+ day discount (if applicable). Late fee/early refund apply at return time.</p>
+        <button class="btn primary" onclick="alert('🎉 Booking confirmed! This is a demo UI.')">Confirm Booking</button>
+      </div>`;
+
+            document.getElementById('quoteBody').innerHTML = html;
+            document.getElementById('quoteCard').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Glow/Dark toggle (visual only)
+        const toggle = document.getElementById('themeToggle');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            document.body.style.background = toggle.classList.contains('active') ?
+                'radial-gradient(1200px 600px at 90% -10%, rgba(121,242,192,.20), rgba(0,0,0,0)) , radial-gradient(900px 600px at -10% 20%, rgba(255,209,102,.18), rgba(0,0,0,0)) , var(--bg)' :
+                'radial-gradient(1200px 600px at 90% -10%, rgba(110,231,255,.15), rgba(0,0,0,0)) , radial-gradient(900px 600px at -10% 20%, rgba(155,140,255,.18), rgba(0,0,0,0)) , var(--bg)';
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
